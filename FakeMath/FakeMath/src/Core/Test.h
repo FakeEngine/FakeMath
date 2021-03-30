@@ -33,6 +33,7 @@
 #include "FakeTimer.h"
 #include "FakeConsole.h"
 #include "FakeString.h"
+#include "../FakeMath.h"
 
 using TestFn = std::function<int()>;
 

@@ -1,1 +1,6 @@
-#pragma once
+#ifndef FAKE_MATH_FUNCTIONS_H
+#define FAKE_MATH_FUNCTIONS_H
+
+
+
+#endif

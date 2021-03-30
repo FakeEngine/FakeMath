@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FAKE_AABB_H
+#define FAKE_AABB_H
 
 #include "FakeVector3.h"
 
@@ -10,3 +11,5 @@ struct FakeAABB
 
 
 	};
+
+#endif
