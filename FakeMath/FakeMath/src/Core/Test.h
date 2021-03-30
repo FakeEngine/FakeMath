@@ -39,10 +39,13 @@ using TestFn = std::function<int()>;
 
 int perform_tests(TestFn funcs[], uint32 count);
 
+bool assert_equal(const FakeTimer &timer, float value1, float value2);
+bool assert_not_equal(const FakeTimer &timer, float value1, float value2);
+
 template<typename T>
-inline static bool assert_equal(const FakeTimer &timer, const T &str1, const T &str2)
+inline static bool assert_equal(const FakeTimer &timer, const T &value1, const T &value2)
 	{
-	FAKE_ASSERT(str1 == str2, timer.GetName());
+	FAKE_ASSERT(value1 == value2, timer.GetName());
 
 	Ref<FakeConsole> console = FakeConsole::Create();
 	FakeConsoleForeground foreground = FakeConsoleForeground::GREEN;
@@ -53,9 +56,9 @@ inline static bool assert_equal(const FakeTimer &timer, const T &str1, const T &
 	}
 
 template<typename T>
-inline static bool assert_not_equal(const FakeTimer &timer, const T &str1, const T &str2)
+inline static bool assert_not_equal(const FakeTimer &timer, const T &value1, const T &value2)
 	{
-	FAKE_ASSERT(str1 != str2, timer.GetName());
+	FAKE_ASSERT(value1 != value2, timer.GetName());
 
 	Ref<FakeConsole> console = FakeConsole::Create();
 	FakeConsoleForeground foreground = FakeConsoleForeground::GREEN;
