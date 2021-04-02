@@ -73,19 +73,28 @@ struct FakeVector2
 		return fake_is_one(fake_round(X * X + Y * Y));
 		}
 
+	// @Test implemented
 	bool IsZero() const
 		{
 		return fake_is_zero(X) && fake_is_zero(Y);
 		}
 
+	// @Test implemented
 	bool IsAnyZero() const
 		{
 		return fake_is_zero(X) || fake_is_zero(Y);
 		}
 
+	// @Test implemented
 	bool IsOne() const
 		{
 		return fake_is_one(X) && fake_is_one(Y);
+		}
+
+	// @Test implemented
+	bool IsAnyOne() const
+		{
+		return fake_is_one(X) || fake_is_one(Y);
 		}
 
 	// @Test implemented
@@ -106,11 +115,13 @@ struct FakeVector2
 		return static_cast<T>(1) / Length();
 		}
 
+	// @Test implemented
 	FakeVector2 GetAbsolute() const
 		{
 		return FakeVector2(FAKE_ABS(X), FAKE_ABS(Y));
 		}
 
+	// @Test implemented
 	FakeVector2 GetNegative() const
 		{
 		return FakeVector2(-X, -Y);
@@ -123,31 +134,37 @@ struct FakeVector2
 		return FakeVector2(X * invLen, Y * invLen);
 		}
 
+	// @Test implemented
 	T AverageArithmetic() const
 		{
 		return (X + Y) * static_cast<T>(0.5);
 		}
 
+	// @Test implemented
 	T Min() const
 		{
 		return fake_min(X, Y);
 		}
 
+	// @Test implemented
 	T Max() const
 		{
 		return fake_max(X, Y);
 		}
 
+	// @Test implemented
 	bool IsNaN() const
 		{
 		return isnan(X) && isnan(Y);
 		}
 
+	// @Test implemented
 	bool IsInfinity() const
 		{
 		return isinf(X) && isinf(Y);
 		}
 
+	// @Test implemented
 	bool IsNaNOrInifinity() const
 		{
 		return IsNaN() || IsInfinity();
@@ -173,26 +190,30 @@ struct FakeVector2
 		Y *= inv;
 		}
 
+	// @Test implemented
 	void Absolute()
 		{
 		X = FAKE_ABS(X);
 		Y = FAKE_ABS(Y);
 		}
 
+	// @Test implemented
 	void Negate()
 		{
 		X = -X;
 		Y = -Y;
 		}
 
-	static bool NearEqual(const FakeVector2 &x, const FakeVector2 &y)
+	// @Test implemented
+	static bool NearEqual(const FakeVector2 &a, const FakeVector2 &b)
 		{
-		return fake_near_equal(x.X, y.X) && fake_near_equal(y.X, y.Y);
+		return fake_near_equal(a.X, b.X) && fake_near_equal(a.Y, b.Y);
 		}
 
-	static bool NearEqual(const FakeVector2 &x, const FakeVector2 &y, T epsilon)
+	// @Test implemented
+	static bool NearEqual(const FakeVector2 &a, const FakeVector2 &b, T epsilon)
 		{
-		return fake_near_equal(x.X, y.X, epsilon) && fake_near_equal(y.X, y.Y, epsilon);
+		return fake_near_equal(a.X, b.X, epsilon) && fake_near_equal(a.Y, b.Y, epsilon);
 		}
 
 	static void Add(const FakeVector2 &a, const FakeVector2 &b, FakeVector2 &result)
