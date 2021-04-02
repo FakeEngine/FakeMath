@@ -20,6 +20,10 @@ int main(int argc, char *argv[])
 		FakeVector2Tests::test_inverse_length,
 		FakeVector2Tests::test_union,
 		FakeVector2Tests::test_normalize,
+		FakeVector2Tests::test_normalize_fast,
+		FakeVector2Tests::test_get_normalized_value,
+		FakeVector2Tests::test_is_normalized_true,
+		FakeVector2Tests::test_is_normalized_false,
 		
 		// VECTOR 3 TESTS
 		// VECTOR 4 TESTS

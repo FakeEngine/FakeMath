@@ -42,6 +42,15 @@ int perform_tests(TestFn funcs[], uint32 count);
 bool assert_equal(const FakeTimer &timer, float value1, float value2);
 bool assert_not_equal(const FakeTimer &timer, float value1, float value2);
 
+bool assert_equal(const FakeTimer &timer, const FakeVec2f &value1, const FakeVec2f &value2);
+bool assert_not_equal(const FakeTimer &timer, const FakeVec2f &value1, const FakeVec2f &value2);
+
+bool assert_equal(const FakeTimer &timer, const FakeVec3f &value1, const FakeVec3f &value2);
+bool assert_not_equal(const FakeTimer &timer, const FakeVec3f &value1, const FakeVec3f &value2);
+
+bool assert_equal(const FakeTimer &timer, const FakeVec4f &value1, const FakeVec4f &value2);
+bool assert_not_equal(const FakeTimer &timer, const FakeVec4f &value1, const FakeVec4f &value2);
+
 template<typename T>
 inline static bool assert_equal(const FakeTimer &timer, const T &value1, const T &value2)
 	{

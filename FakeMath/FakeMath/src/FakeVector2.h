@@ -67,9 +67,10 @@ struct FakeVector2
 		return FakeString::ToString(X) + ", " + FakeString::ToString(Y);
 		}
 
+	// @Test implemented
 	bool IsNormalized() const
 		{
-		return fake_is_one(X * X + Y * Y);
+		return fake_is_one(fake_round(X * X + Y * Y));
 		}
 
 	bool IsZero() const
@@ -115,7 +116,8 @@ struct FakeVector2
 		return FakeVector2(-X, -Y);
 		}
 
-	T GetNormalized() const
+	// @Test implemented
+	FakeVector2 GetNormalized() const
 		{
 		T invLen = InverseLength();
 		return FakeVector2(X * invLen, Y * invLen);
@@ -151,6 +153,7 @@ struct FakeVector2
 		return IsNaN() || IsInfinity();
 		}
 
+	// @Test implemented
 	void Normalize()
 		{
 		const T length = Length();
@@ -162,6 +165,7 @@ struct FakeVector2
 			}
 		}
 
+	// @Test implemented
 	void NormalizeFast()
 		{
 		const T inv = static_cast<T>(1) / Length();
