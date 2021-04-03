@@ -205,7 +205,7 @@ namespace FakeVector2Tests
 		{
 		FakeVec2f v(4.0f, 3.0f);
 		float value = 2.0f;
-		FakeVec2f expected(2.0f, 1.5f);
+		FakeVec2f expected(0.5f, 0.666667f);
 
 		FakeTimer timer("FakeVector2Tests::test_divide_reverse_operator");
 		FakeVec2f result = value / v;

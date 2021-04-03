@@ -650,7 +650,7 @@ inline FakeVector2<T> operator+(T scalar, const FakeVector2<T> &v)
 template<typename T>
 inline FakeVector2<T> operator-(T scalar, const FakeVector2<T> &v)
 	{
-	return v - scalar;
+	return FakeVector2<T>(scalar) - v;
 	}
 
 template<typename T>
@@ -662,7 +662,7 @@ inline FakeVector2<T> operator*(T scalar, const FakeVector2<T> &v)
 template<typename T>
 inline FakeVector2<T> operator/(T scalar, const FakeVector2<T> &v)
 	{
-	return v / scalar;
+	return FakeVector2<T>(scalar) / v;
 	}
 
 typedef FakeVector2<double> FakeVec2d;

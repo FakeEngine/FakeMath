@@ -154,7 +154,7 @@ namespace FakeVector2Tests
 		{
 		FakeVec2f v(2.0f, 2.5f);
 		float value = 0.5f;
-		FakeVec2f expected(1.5f, 2.0f);
+		FakeVec2f expected(-1.5f, -2.0f);
 
 		FakeTimer timer("FakeVector2Tests::test_subtract_reverse_operator");
 		FakeVec2f result = value - v;
