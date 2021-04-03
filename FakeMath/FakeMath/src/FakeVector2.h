@@ -216,42 +216,49 @@ struct FakeVector2
 		return fake_near_equal(a.X, b.X, epsilon) && fake_near_equal(a.Y, b.Y, epsilon);
 		}
 
+	// @Test implemented
 	static void Add(const FakeVector2 &a, const FakeVector2 &b, FakeVector2 &result)
 		{
 		result.X = a.X + b.X;
 		result.Y = a.Y + b.Y;
 		}
 
+	// @Test implemented
 	static void Add(const FakeVector2 &a, T b, FakeVector2 &result)
 		{
 		result.X = a.X + b;
 		result.Y = a.Y + b;
 		}
 
+	// @Test implemented
 	static void Subtract(const FakeVector2 &a, const FakeVector2 &b, FakeVector2 &result)
 		{
 		result.X = a.X - b.X;
 		result.Y = a.Y - b.Y;
 		}
 
+	// @Test implemented
 	static void Subtract(const FakeVector2 &a, T b, FakeVector2 &result)
 		{
 		result.X = a.X - b;
 		result.Y = a.Y - b;
 		}
 
+	// @Test implemented
 	static void Multiply(const FakeVector2 &a, const FakeVector2 &b, FakeVector2 &result)
 		{
 		result.X = a.X * b.X;
 		result.Y = a.Y * b.Y;
 		}
 
+	// @Test implemented
 	static void Multiply(const FakeVector2 &a, T b, FakeVector2 &result)
 		{
 		result.X = a.X * b;
 		result.Y = a.Y * b;
 		}
 
+	// @Test implemented
 	static void Divide(const FakeVector2 &a, const FakeVector2 &b, FakeVector2 &result)
 		{
 		if (b > static_cast<T>(0))
@@ -266,6 +273,7 @@ struct FakeVector2
 			}
 		}
 
+	// @Test implemented
 	static void Divide(const FakeVector2 &a, T b, FakeVector2 &result)
 		{
 		if (b > static_cast<T>(0))
@@ -280,6 +288,7 @@ struct FakeVector2
 			}
 		}
 
+	// @Test implemented
 	static FakeVector2 Add(const FakeVector2 &a, const FakeVector2 &b)
 		{
 		FakeVector2 result;
@@ -287,6 +296,7 @@ struct FakeVector2
 		return result;
 		}
 
+	// @Test implemented
 	static FakeVector2 Subtract(const FakeVector2 &a, const FakeVector2 &b)
 		{
 		FakeVector2 result;
@@ -294,6 +304,7 @@ struct FakeVector2
 		return result;
 		}
 
+	// @Test implemented
 	static FakeVector2 Multiply(const FakeVector2 &a, const FakeVector2 &b)
 		{
 		FakeVector2 result;
@@ -301,7 +312,40 @@ struct FakeVector2
 		return result;
 		}
 
+	// @Test implemented
 	static FakeVector2 Divide(const FakeVector2 &a, const FakeVector2 &b)
+		{
+		FakeVector2 result;
+		Divide(a, b, result);
+		return result;
+		}
+
+	// @Test implemented
+	static FakeVector2 Add(const FakeVector2 &a, T b)
+		{
+		FakeVector2 result;
+		Add(a, b, result);
+		return result;
+		}
+
+	// @Test implemented
+	static FakeVector2 Subtract(const FakeVector2 &a, T b)
+		{
+		FakeVector2 result;
+		Subtract(a, b, result);
+		return result;
+		}
+
+	// @Test implemented
+	static FakeVector2 Multiply(const FakeVector2 &a, T b)
+		{
+		FakeVector2 result;
+		Multiply(a, b, result);
+		return result;
+		}
+
+	// @Test implemented
+	static FakeVector2 Divide(const FakeVector2 &a, T b)
 		{
 		FakeVector2 result;
 		Divide(a, b, result);
@@ -460,21 +504,25 @@ struct FakeVector2
 		return X >= value && Y >= value;
 		}
 
+	// @Test implemented
 	FakeVector2 operator+(const FakeVector2 &other) const
 		{
 		return Add(*this, other);
 		}
 
+	// @Test implemented
 	FakeVector2 operator-(const FakeVector2 &other) const
 		{
 		return Subtract(*this, other);
 		}
 
+	// @Test implemented
 	FakeVector2 operator*(const FakeVector2 &other) const
 		{
 		return Multiply(*this, other);
 		}
 
+	// @Test implemented
 	FakeVector2 operator/(const FakeVector2 &other) const
 		{
 		return Divide(*this, other);
@@ -495,68 +543,80 @@ struct FakeVector2
 		return Dot(*this, other);
 		}
 
+	// @Test implemented
 	FakeVector2 &operator+=(const FakeVector2 &other)
 		{
 		*this = Add(*this, other);
 		return *this;
 		}
 
+	// @Test implemented
 	FakeVector2 &operator-=(const FakeVector2 &other)
 		{
 		*this = Subtract(*this, other);
 		return *this;
 		}
 
+	// @Test implemented
 	FakeVector2 &operator*=(const FakeVector2 &other)
 		{
 		*this = Multiply(*this, other);
 		return *this;
 		}
 
+	// @Test implemented
 	FakeVector2 &operator/=(const FakeVector2 &other)
 		{
 		*this = Divide(*this, other);
 		return *this;
 		}
 
+	// @Test implemented
 	FakeVector2 operator+(T scalar) const
 		{
 		return Add(*this, scalar);
 		}
 
+	// @Test implemented
 	FakeVector2 operator-(T scalar) const
 		{
 		return Subtract(*this, scalar);
 		}
 
+	// @Test implemented
 	FakeVector2 operator*(T scalar) const
 		{
 		return Multiply(*this, scalar);
 		}
 
+	// @Test implemented
 	FakeVector2 operator/(T scalar) const
 		{
 		return Divide(*this, scalar);
 		}
 
+	// @Test implemented
 	FakeVector2 &operator+=(T scalar)
 		{
 		*this = Add(*this, scalar);
 		return *this;
 		}
 
+	// @Test implemented
 	FakeVector2 &operator-=(T scalar)
 		{
 		*this = Subtract(*this, scalar);
 		return *this;
 		}
 
+	// @Test implemented
 	FakeVector2 &operator*=(T scalar)
 		{
 		*this = Multiply(*this, scalar);
 		return *this;
 		}
 
+	// @Test implemented
 	FakeVector2 &operator/=(T scalar)
 		{
 		*this = Divide(*this, scalar);
@@ -573,10 +633,12 @@ struct FakeVector2
 		return FakeVector2(X - static_cast<T>(1), Y - static_cast<T>(1));
 		}
 
+	// @Test implemented
 	FakeVector2 &operator=(const FakeVector2 &other)
 		{
 		X = other.X;
 		Y = other.Y;
+		return *this;
 		}
 
 	T *operator*()

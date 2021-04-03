@@ -10,7 +10,7 @@
 #include "LengthTest.h"
 #include "UnionTest.h"
 #include "ComponentTest.h"
-#include "OperatorTest.h"
+#include "BinaryOperatorTest.h"
 #include "VectorFuncsTest.h"
 
 #endif
