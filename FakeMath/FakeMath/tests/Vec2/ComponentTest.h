@@ -20,6 +20,7 @@ namespace FakeVector2Tests
 
 	int test_negate_true();
 	int test_negate_false();
+	int test_negate_operator();
 
 	int test_get_absolute_true();
 	int test_get_absolute_false();
@@ -28,8 +29,12 @@ namespace FakeVector2Tests
 	int test_get_negative_false();
 
 	int test_average_arithmetic();
-	int test_min();
-	int test_max();
+	int test_min_vector_1();
+	int test_min_vector_2();
+	int test_min_value();
+	int test_max_vector_1();
+	int test_max_vector_2();
+	int test_max_value();
 
 	int test_is_nan();
 	int test_is_infinity();

@@ -16,7 +16,7 @@ FakeTimer::~FakeTimer()
 
 void FakeTimer::Start(const char *name)
 	{
-	if (Name.IsEmpty())
+	if (!Name.IsEmpty())
 		{
 		Name = name;
 		}

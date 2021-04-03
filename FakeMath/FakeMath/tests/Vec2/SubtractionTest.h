@@ -14,6 +14,9 @@ namespace FakeVector2Tests
 
 	int test_subtract_scalar_operator_1();
 	int test_subtract_scalar_operator_2();
+
+	int test_subtract_one_unit();
+	int test_subtract_reverse_operator();
 	}
 
 #endif

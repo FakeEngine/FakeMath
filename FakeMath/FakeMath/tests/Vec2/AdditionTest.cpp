@@ -134,4 +134,35 @@ namespace FakeVector2Tests
 
 		return 0;
 		}
+
+	int test_add_one_unit()
+		{
+		FakeVec2f v(42.5f, 65.2f);
+		FakeVec2f expected(43.5f, 66.2f);
+
+		FakeTimer timer("FakeVector2Tests::test_add_one_unit");
+		v++;
+		timer.Stop();
+
+		if (!assert_equal(timer, expected, v))
+			return -1;
+
+		return 0;
+		}
+
+	int test_add_reverse_operator()
+		{
+		FakeVec2f v(2.0f, 1.5f);
+		float value = 0.5f;
+		FakeVec2f expected(2.5f, 2.0f);
+
+		FakeTimer timer("FakeVector2Tests::test_add_reverse_operator");
+		FakeVec2f result = value + v;
+		timer.Stop();
+
+		if (!assert_equal(timer, expected, result))
+			return -1;
+
+		return 0;
+		}
 	}

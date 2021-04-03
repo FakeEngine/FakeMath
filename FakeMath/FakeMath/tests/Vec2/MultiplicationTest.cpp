@@ -134,4 +134,20 @@ namespace FakeVector2Tests
 
 		return 0;
 		}
+
+	int test_multiply_reverse_operator()
+		{
+		FakeVec2f v(2.0f, 1.5f);
+		float value = 2.0f;
+		FakeVec2f expected(4.0f, 3.0f);
+
+		FakeTimer timer("FakeVector2Tests::test_multiply_reverse_operator");
+		FakeVec2f result = value * v;
+		timer.Stop();
+
+		if (!assert_equal(timer, expected, result))
+			return -1;
+
+		return 0;
+		}
 	}
