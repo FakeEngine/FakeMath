@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "Core/Test.h"
-
+#include "../tests/MathFunctions/MathFunctionsTest.h"
 #include "../tests/Vec2/Vector2Tests.h"
 
 int main(int argc, char *argv[])
@@ -10,7 +10,29 @@ int main(int argc, char *argv[])
 	TestFn tests[] =
 		{
 		// MATH FUNCTION TESTS
-		
+		FakeMathFunctionsTests::test_mod_double,
+		FakeMathFunctionsTests::test_mod_float,
+		FakeMathFunctionsTests::test_mod_float_ptr,
+		FakeMathFunctionsTests::test_mod_exp,
+		FakeMathFunctionsTests::test_mod_exp_2,
+		FakeMathFunctionsTests::test_mod_trunk,
+		FakeMathFunctionsTests::test_mod_fractional,
+
+		FakeMathFunctionsTests::test_trunk_to_int,
+		FakeMathFunctionsTests::test_floor_to_int,
+		FakeMathFunctionsTests::test_round_to_int,
+		FakeMathFunctionsTests::test_ceil_to_int,
+		FakeMathFunctionsTests::test_round_with_power_of_2_to_32signed_int,
+		FakeMathFunctionsTests::test_round_with_power_of_2_to_64signed_int,
+		FakeMathFunctionsTests::test_round_with_power_of_2_to_32unsigned_int,
+		FakeMathFunctionsTests::test_round_with_power_of_2_to_64unsigned_int,
+
+		FakeMathFunctionsTests::test_round_double,
+		FakeMathFunctionsTests::test_round_float,
+		FakeMathFunctionsTests::test_floor_double,
+		FakeMathFunctionsTests::test_floor_float,
+		FakeMathFunctionsTests::test_ceil_double,
+		FakeMathFunctionsTests::test_ceil_float,
 
 		// VECTOR 2 TESTS
 		FakeVector2Tests::test_union,
