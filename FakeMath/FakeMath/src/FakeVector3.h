@@ -85,7 +85,7 @@ struct FakeVector3
 		{
 		}
 
-	FakeString ToString()
+	FakeString ToString() const
 		{
 		return FakeString::ToString(X) + ", " + FakeString::ToString(Y) + ", " + FakeString::ToString(Z);
 		}
@@ -845,6 +845,22 @@ struct FakeVector3
 		return *this;
 		}
 
+	FakeVector3 &operator++(int)
+		{
+		++X;
+		++Y;
+		++Z;
+		return *this;
+		}
+
+	FakeVector3 &operator--(int)
+		{
+		--X;
+		--Y;
+		--Z;
+		return *this;
+		}
+
 	FakeVector3 &operator=(const FakeVector3 &other)
 		{
 		X = other.X;
@@ -873,7 +889,7 @@ struct FakeVector3
 		return *((T*)this + index);
 		}
 
-	friend std::ostream &operator<<(std::ostream &stream, const FakeVector3<T> &v)
+	friend std::ostream &operator<<(std::ostream &stream, const FakeVector3 &v)
 		{
 		stream << v.X << ", " << v.Y << ", " << v.Z;
 		return stream;
