@@ -633,12 +633,12 @@ struct FakeVector4
 
 	T *operator*()
 		{
-		return &Raw[0];
+		return Raw;
 		}
 
 	const T *operator*() const
 		{
-		return &Raw[0];
+		return Raw;
 		}
 
 	T &operator[](uint32 index)

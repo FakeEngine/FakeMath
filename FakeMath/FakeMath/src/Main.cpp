@@ -3,6 +3,12 @@
 #include "Core/Test.h"
 #include "../tests/MathFunctions/MathFunctionsTest.h"
 #include "../tests/Vec2/Vector2Tests.h"
+#include "../tests/Vec3/Vector3Tests.h"
+#include "../tests/Vec4/Vector4Tests.h"
+#include "../tests/Mat2/Matrix2Tests.h"
+#include "../tests/Mat3/Matrix3Tests.h"
+#include "../tests/Mat4/Matrix4Tests.h"
+#include "../tests/Quat/QuaternionTests.h"
 
 int main(int argc, char *argv[])
 	{
