@@ -32,125 +32,119 @@ struct FakeVector2
 
 	FakeVector2()
 		: X(0), Y(0)
-		{
-		}
+		{}
 
 	FakeVector2(T xy)
 		: X(xy), Y(xy)
-		{
-		}
+		{}
 
 	FakeVector2(T x, T y)
 		: X(x), Y(y)
-		{
-		}
+		{}
 
 	FakeVector2(const FakeVector2 &other)
 		: X(other.X), Y(other.Y)
-		{
-		}
+		{}
 
 	FakeVector2(const FakeVector3<T> &other)
 		: X(other.X), Y(other.Y)
-		{
-		}
+		{}
 
 	FakeVector2(const FakeVector4<T> &other)
 		: X(other.X), Y(other.Y)
-		{
-		}
+		{}
 
 	FakeString ToString() const
 		{
 		return FakeString::ToString(X) + ", " + FakeString::ToString(Y);
 		}
-	
+
 	bool IsNormalized() const
 		{
 		return fake_is_one(fake_round(X * X + Y * Y));
 		}
-	
+
 	bool IsZero() const
 		{
 		return fake_is_zero(X) && fake_is_zero(Y);
 		}
-	
+
 	bool IsAnyZero() const
 		{
 		return fake_is_zero(X) || fake_is_zero(Y);
 		}
-	
+
 	bool IsOne() const
 		{
 		return fake_is_one(X) && fake_is_one(Y);
 		}
-	
+
 	bool IsAnyOne() const
 		{
 		return fake_is_one(X) || fake_is_one(Y);
 		}
-	
+
 	T Length() const
 		{
 		return fake_sqrt(X * X + Y * Y);
 		}
-	
+
 	T LengthSquared() const
 		{
 		return X * X + Y * Y;
 		}
-	
+
 	T InverseLength() const
 		{
 		return static_cast<T>(1) / Length();
 		}
-	
+
 	FakeVector2 GetAbsolute() const
 		{
 		return FakeVector2(FAKE_ABS(X), FAKE_ABS(Y));
 		}
-	
+
 	FakeVector2 GetNegative() const
 		{
 		return FakeVector2(-X, -Y);
 		}
-	
+
 	FakeVector2 GetNormalized() const
 		{
 		T invLen = InverseLength();
 		return FakeVector2(X * invLen, Y * invLen);
 		}
-	
+
 	T AverageArithmetic() const
 		{
 		return (X + Y) * static_cast<T>(0.5);
 		}
-	
+
 	T Min() const
 		{
 		return fake_min(X, Y);
 		}
-	
+
 	T Max() const
 		{
 		return fake_max(X, Y);
 		}
-	
+
 	bool IsNaN() const
 		{
 		return isnan(X) && isnan(Y);
 		}
-	
+
 	bool IsInfinity() const
 		{
 		return isinf(X) && isinf(Y);
 		}
-	
+
 	bool IsNaNOrInifinity() const
 		{
 		return IsNaN() || IsInfinity();
 		}
-	
+
 	void Normalize()
 		{
 		const T length = Length();
@@ -161,7 +155,7 @@ struct FakeVector2
 			Y *= inv;
 			}
 		}
-	
+
 	void NormalizeFast()
 		{
 		const T inv = static_cast<T>(1) / Length();
@@ -185,36 +179,36 @@ struct FakeVector2
 		{
 		return fake_near_equal(a.X, b.X) && fake_near_equal(a.Y, b.Y);
 		}
-	
+
 	static bool NearEqual(const FakeVector2 &a, const FakeVector2 &b, T epsilon)
 		{
 		return fake_near_equal(a.X, b.X, epsilon) && fake_near_equal(a.Y, b.Y, epsilon);
 		}
-	
+
 	static void Add(const FakeVector2 &a, const FakeVector2 &b, FakeVector2 &result)
 		{
 		result.X = a.X + b.X;
 		result.Y = a.Y + b.Y;
 		}
-	
+
 	static void Add(const FakeVector2 &a, T b, FakeVector2 &result)
 		{
 		result.X = a.X + b;
 		result.Y = a.Y + b;
 		}
-	
+
 	static void Subtract(const FakeVector2 &a, const FakeVector2 &b, FakeVector2 &result)
 		{
 		result.X = a.X - b.X;
 		result.Y = a.Y - b.Y;
 		}
-	
+
 	static void Subtract(const FakeVector2 &a, T b, FakeVector2 &result)
 		{
 		result.X = a.X - b;
 		result.Y = a.Y - b;
 		}
-	
+
 	static void Multiply(const FakeVector2 &a, const FakeVector2 &b, FakeVector2 &result)
 		{
 		result.X = a.X * b.X;
@@ -226,7 +220,7 @@ struct FakeVector2
 		result.X = a.X * b;
 		result.Y = a.Y * b;
 		}
-	
+
 	static void Divide(const FakeVector2 &a, const FakeVector2 &b, FakeVector2 &result)
 		{
 		if (b > static_cast<T>(0))
@@ -240,7 +234,7 @@ struct FakeVector2
 			result.Y = static_cast<T>(0);
 			}
 		}
-	
+
 	static void Divide(const FakeVector2 &a, T b, FakeVector2 &result)
 		{
 		if (b > static_cast<T>(0))
@@ -254,7 +248,7 @@ struct FakeVector2
 			result.Y = static_cast<T>(0);
 			}
 		}
-	
+
 	static FakeVector2 Add(const FakeVector2 &a, const FakeVector2 &b)
 		{
 		FakeVector2 result;
@@ -268,60 +262,60 @@ struct FakeVector2
 		Subtract(a, b, result);
 		return result;
 		}
-	
+
 	static FakeVector2 Multiply(const FakeVector2 &a, const FakeVector2 &b)
 		{
 		FakeVector2 result;
 		Multiply(a, b, result);
 		return result;
 		}
-	
+
 	static FakeVector2 Divide(const FakeVector2 &a, const FakeVector2 &b)
 		{
 		FakeVector2 result;
 		Divide(a, b, result);
 		return result;
 		}
-	
+
 	static FakeVector2 Add(const FakeVector2 &a, T b)
 		{
 		FakeVector2 result;
 		Add(a, b, result);
 		return result;
 		}
-	
+
 	static FakeVector2 Subtract(const FakeVector2 &a, T b)
 		{
 		FakeVector2 result;
 		Subtract(a, b, result);
 		return result;
 		}
-	
+
 	static FakeVector2 Multiply(const FakeVector2 &a, T b)
 		{
 		FakeVector2 result;
 		Multiply(a, b, result);
 		return result;
 		}
-	
+
 	static FakeVector2 Divide(const FakeVector2 &a, T b)
 		{
 		FakeVector2 result;
 		Divide(a, b, result);
 		return result;
 		}
-	
+
 	static FakeVector2 Floor(const FakeVector2 &v)
 		{
 		return FakeVector2(fake_floor(v.X), fake_floor(v.Y));
 		}
-	
+
 	static FakeVector2 Round(const FakeVector2 &v)
 		{
 		return FakeVector2(fake_round(v.X), fake_round(v.Y));
 		}
 
-	
+
 	static FakeVector2 Ceil(const FakeVector2 &v)
 		{
 		return FakeVector2(fake_ceil(v.X), fake_ceil(v.Y));
@@ -329,7 +323,7 @@ struct FakeVector2
 
 	static FakeVector2 Frac(const FakeVector2 &v)
 		{
-		return FakeVector2(v.X - (int32)v.X, v.Y - (int32)v.Y);
+		return FakeVector2(v.X - (int32) v.X, v.Y - (int32) v.Y);
 		}
 
 	static void Clamp(const FakeVector2 &value, const FakeVector2 &min, const FakeVector2 &max, FakeVector2 &result)
@@ -416,7 +410,7 @@ struct FakeVector2
 
 	bool operator<(const FakeVector2 &other) const
 		{
-		return X < other.X && Y < other.Y;
+		return X < other.X &&Y < other.Y;
 		}
 
 	bool operator<=(const FakeVector2 &other) const
@@ -446,7 +440,7 @@ struct FakeVector2
 
 	bool operator<(T value) const
 		{
-		return X < value && Y < value;
+		return X < value &&Y < value;
 		}
 
 	bool operator<=(T value) const
@@ -602,7 +596,7 @@ struct FakeVector2
 		{
 		static T wrongRet = static_cast<T>(-1);
 		if (index < 2)
-			return *((T*)this + index);
+			return *((T *) this + index);
 		else
 			return wrongRet;
 		}
@@ -611,7 +605,7 @@ struct FakeVector2
 		{
 		static T wrongRet = static_cast<T>(-1);
 		if (index < 2)
-			return *((T*)this + index);
+			return *((T *) this + index);
 		else
 			return wrongRet;
 		}

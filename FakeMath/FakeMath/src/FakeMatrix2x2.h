@@ -1,5 +1,5 @@
-#ifndef FAKE_MATRIX_22_H
-#define FAKE_MATRIX_22_H
+#ifndef FAKE_MATRIX_2_H
+#define FAKE_MATRIX_2_H
 
 #include "FakeMathFunctions.h"
 #include "FakeVector2.h"
@@ -168,7 +168,7 @@ struct FakeMatrix2x2
 			{
 			return FakeVector2<T>(M21, M22);
 			}
-	
+
 		return FakeVector2<T>(static_cast<T>(0));
 		}
 
@@ -182,7 +182,7 @@ struct FakeMatrix2x2
 			{
 			return FakeVector2<T>(M12, M22);
 			}
-	
+
 		return FakeVector2<T>(static_cast<T>(0));
 		}
 
@@ -386,9 +386,9 @@ struct FakeMatrix2x2
 	bool operator<(const FakeMatrix2x2 &other) const
 		{
 		return M11 < other.M11
-			&& M12 < other.M12
-			&& M21 < other.M21
-			&& M22 < other.M22;
+			&&M12 < other.M12
+			&&M21 < other.M21
+			&&M22 < other.M22;
 		}
 
 	bool operator<=(const FakeMatrix2x2 &other) const
@@ -581,4 +581,3 @@ typedef FakeMatrix2x2<long> FakeMat2l;
 typedef FakeMatrix2x2<bool> FakeMat2b;
 
 #endif
-

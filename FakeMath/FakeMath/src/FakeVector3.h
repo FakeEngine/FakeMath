@@ -47,43 +47,35 @@ struct FakeVector3
 
 	FakeVector3()
 		: X(0), Y(0), Z(0)
-		{
-		}
+		{}
 
 	FakeVector3(T xyz)
 		: X(xyz), Y(xyz), Z(xyz)
-		{
-		}
+		{}
 
 	FakeVector3(T x, T y, T z)
 		: X(x), Y(y), Z(z)
-		{
-		}
+		{}
 
 	FakeVector3(const T *xyz)
 		: X(xyz[0]), Y(xyz[1]), Z(xyz[2])
-		{
-		}
+		{}
 
 	FakeVector3(const FakeVector2<T> &xy, T z)
 		: X(xy.X), Y(xy.Y), Z(z)
-		{
-		}
+		{}
 
 	FakeVector3(const FakeVector2<T> &xy)
 		: X(xy.X), Y(xy.Y), Z(0)
-		{
-		}
+		{}
 
 	FakeVector3(const FakeVector3 &other)
 		: X(other.X), Y(other.Y), Z(other.Z)
-		{
-		}
+		{}
 
 	FakeVector3(const FakeVector4<T> &xyzw)
 		: X(xyzw.X), Y(xyzw.Y), Z(xyzw.Z)
-		{
-		}
+		{}
 
 	FakeString ToString() const
 		{
@@ -382,7 +374,7 @@ struct FakeVector3
 
 	static FakeVector3 Frac(const FakeVector3 &v)
 		{
-		return FakeVector3(v.X - (int32)v.X, v.Y - (int32)v.Y, v.Z - (int32)v.Z);
+		return FakeVector3(v.X - (int32) v.X, v.Y - (int32) v.Y, v.Z - (int32) v.Z);
 		}
 
 	static void Clamp(const FakeVector3 &value, const FakeVector3 &min, const FakeVector3 &max, FakeVector3 &result)
@@ -694,7 +686,7 @@ struct FakeVector3
 
 	bool operator<(const FakeVector3 &other) const
 		{
-		return X < other.X && Y < other.Y && Z < other.Z;
+		return X < other.X &&Y < other.Y &&Z < other.Z;
 		}
 
 	bool operator<=(const FakeVector3 &other) const
@@ -724,7 +716,7 @@ struct FakeVector3
 
 	bool operator<(T value) const
 		{
-		return X < value && Y < value && Z < value;
+		return X < value &&Y < value &&Z < value;
 		}
 
 	bool operator<=(T value) const
@@ -805,12 +797,12 @@ struct FakeVector3
 		{
 		return Add(*this, scalar);
 		}
-	
+
 	FakeVector3 operator-(T scalar) const
 		{
 		return Subtract(*this, scalar);
 		}
-	
+
 	FakeVector3 operator*(T scalar) const
 		{
 		return Multiply(*this, scalar);
@@ -826,19 +818,19 @@ struct FakeVector3
 		*this = Add(*this, scalar);
 		return *this;
 		}
-	
+
 	FakeVector3 &operator-=(T scalar)
 		{
 		*this = Subtract(*this, scalar);
 		return *this;
 		}
-		
+
 	FakeVector3 &operator*=(T scalar)
 		{
 		*this = Multiply(*this, scalar);
 		return *this;
 		}
-		
+
 	FakeVector3 &operator/=(T scalar)
 		{
 		*this = Divide(*this, scalar);
@@ -881,12 +873,12 @@ struct FakeVector3
 
 	T &operator[](uint32 index)
 		{
-		return *((T*)this + index);
+		return *((T *) this + index);
 		}
 
 	const T &operator[](uint32 index) const
 		{
-		return *((T*)this + index);
+		return *((T *) this + index);
 		}
 
 	friend std::ostream &operator<<(std::ostream &stream, const FakeVector3 &v)
@@ -968,6 +960,5 @@ typedef FakeVector3<int32> FakeVec3i;
 typedef FakeVector3<short> FakeVec3s;
 typedef FakeVector3<long> FakeVec3l;
 typedef FakeVector3<bool> FakeVec3b;
-
 
 #endif

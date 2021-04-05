@@ -1,6 +1,8 @@
 #ifndef FAKE_VECTOR_4_H
 #define FAKE_VECTOR_4_H
 
+#include "FakeMathFunctions.h"
+
 template<typename T>
 struct FakeVector2;
 
@@ -37,53 +39,43 @@ struct FakeVector4
 
 	FakeVector4()
 		: X(0), Y(0), Z(0), W(0)
-		{
-		}
+		{}
 
 	FakeVector4(T xyzw)
 		: X(xyzw), Y(xyzw), Z(xyzw), W(xyzw)
-		{
-		}
+		{}
 
 	FakeVector4(T x, T y, T z, T w)
 		: X(x), Y(y), Z(z), W(w)
-		{
-		}
+		{}
 
 	FakeVector4(const T *xyzw)
 		: X(xyzw[0]), Y(xyzw[1]), Z(xyzw[2]), W(xyzw[3])
-		{
-		}
+		{}
 
 	FakeVector4(const FakeVector2<T> &xy)
 		: X(xy.X), Y(xy.Y), Z(0), W(0)
-		{
-		}
+		{}
 
 	FakeVector4(const FakeVector3<T> &xyz)
 		: X(xyz.X), Y(xyz.Y), Z(xyz.Z), W(0)
-		{
-		}
+		{}
 
 	FakeVector4(const FakeVector4 &other)
 		: X(other.X), Y(other.Y), Z(other.Z), W(other.W)
-		{
-		}
+		{}
 
 	FakeVector4(const FakeVector2<T> &xy, const FakeVector2<T> &zw)
 		: X(xy.X), Y(xy.Y), Z(zw.X), W(zw.Y)
-		{
-		}
+		{}
 
 	FakeVector4(const FakeVector2<T> &xy, T z, T w)
 		: X(xy.X), Y(xy.Y), Z(z), W(w)
-		{
-		}
+		{}
 
 	FakeVector4(const FakeVector3<T> &xyz, T w)
 		: X(xyz.X), Y(xyz.Y), Z(xyz.Z), W(w)
-		{
-		}
+		{}
 
 	FakeString ToString() const
 		{
@@ -381,7 +373,7 @@ struct FakeVector4
 
 	static FakeVector4 Frac(const FakeVector4 &v)
 		{
-		return FakeVector4(v.X - (int32)v.X, v.Y - (int32)v.Y, v.Z - (int32)v.Z, v.W - (int32)v.W);
+		return FakeVector4(v.X - (int32) v.X, v.Y - (int32) v.Y, v.Z - (int32) v.Z, v.W - (int32) v.W);
 		}
 
 	static void Clamp(const FakeVector4 &value, const FakeVector4 &min, const FakeVector4 &max, FakeVector4 &result)
@@ -455,17 +447,17 @@ struct FakeVector4
 		{
 		return X == other.X && Y == other.Y && Z == other.Z && W == other.W;
 		}
-	
+
 	bool operator!=(const FakeVector4 &other) const
 		{
 		return !(*this == other);
 		}
-		
+
 	bool operator<(const FakeVector4 &other) const
 		{
-		return X < other.X && Y < other.Y && Z < other.Z && W < other.W;
+		return X < other.X &&Y < other.Y &&Z < other.Z &&W < other.W;
 		}
-		
+
 	bool operator<=(const FakeVector4 &other) const
 		{
 		return X <= other.X && Y <= other.Y && Z <= other.Z && W <= other.W;
@@ -493,7 +485,7 @@ struct FakeVector4
 
 	bool operator<(T value) const
 		{
-		return X < value && Y < value && Z < value && W < value;
+		return X < value &&Y < value &&Z < value &&W < value;
 		}
 
 	bool operator<=(T value) const
@@ -585,13 +577,13 @@ struct FakeVector4
 		*this = Add(*this, scalar);
 		return *this;
 		}
-		
+
 	FakeVector4 &operator-=(T scalar)
 		{
 		*this = Subtract(*this, scalar);
 		return *this;
 		}
-		
+
 	FakeVector4 &operator*=(T scalar)
 		{
 		*this = Multiply(*this, scalar);
@@ -643,12 +635,12 @@ struct FakeVector4
 
 	T &operator[](uint32 index)
 		{
-		return *((T*)this + index);
+		return *((T *) this + index);
 		}
 
 	const T &operator[](uint32 index) const
 		{
-		return *((T*)this + index);
+		return *((T *) this + index);
 		}
 
 	friend std::ostream &operator<<(std::ostream &stream, const FakeVector4 &v)

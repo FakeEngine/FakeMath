@@ -1,12 +1,10 @@
-#ifndef FAKE_MATRIX_44_H
-#define FAKE_MATRIX_44_H
+#ifndef FAKE_MATRIX_4_H
+#define FAKE_MATRIX_4_H
 
 #include "FakeMathFunctions.h"
-
 #include "FakeVector2.h"
 #include "FakeVector3.h"
 #include "FakeVector4.h"
-
 #include "FakeMatrix2x2.h"
 #include "FakeMatrix3x3.h"
 
@@ -61,7 +59,7 @@ struct FakeMatrix4x4
 		M32 = static_cast<T>(0);
 		M33 = static_cast<T>(0);
 		M34 = static_cast<T>(0);
-		
+
 		M41 = static_cast<T>(0);
 		M42 = static_cast<T>(0);
 		M43 = static_cast<T>(0);
@@ -116,18 +114,18 @@ struct FakeMatrix4x4
 
 	FakeMatrix4x4(T values[16])
 		{
-		M11 = values[ 0];
-		M12 = values[ 1];
-		M13 = values[ 2];
-		M14 = values[ 3];
+		M11 = values[0];
+		M12 = values[1];
+		M13 = values[2];
+		M14 = values[3];
 
-		M21 = values[ 4];
-		M22 = values[ 5];
-		M23 = values[ 6];
-		M24 = values[ 7];
+		M21 = values[4];
+		M22 = values[5];
+		M23 = values[6];
+		M24 = values[7];
 
-		M31 = values[ 8];
-		M32 = values[ 9];
+		M31 = values[8];
+		M32 = values[9];
 		M33 = values[10];
 		M34 = values[11];
 
@@ -204,6 +202,52 @@ struct FakeMatrix4x4
 		M42 = v4.Y;
 		M43 = v4.Z;
 		M44 = v4.W;
+		}
+
+	FakeMatrix4x4(const FakeMatrix2x2<T> &other)
+		{
+		M11 = other.M11;
+		M12 = other.M12;
+		M13 = static_cast<T>(0);
+		M14 = static_cast<T>(0);
+
+		M21 = other.M21;
+		M22 = other.M22;
+		M23 = static_cast<T>(0);
+		M24 = static_cast<T>(0);
+
+		M31 = static_cast<T>(0);
+		M32 = static_cast<T>(0);
+		M33 = static_cast<T>(1);
+		M34 = static_cast<T>(0);
+
+		M41 = static_cast<T>(0);
+		M42 = static_cast<T>(0);
+		M43 = static_cast<T>(0);
+		M44 = static_cast<T>(1);
+		}
+
+	FakeMatrix4x4(const FakeMatrix3x3<T> &other)
+		{
+		M11 = other.M11;
+		M12 = other.M12;
+		M13 = other.M13;
+		M14 = static_cast<T>(0);
+
+		M21 = other.M21;
+		M22 = other.M22;
+		M23 = other.M23;
+		M24 = static_cast<T>(0);
+
+		M31 = other.M31;
+		M32 = other.M32;
+		M33 = other.M33;
+		M34 = static_cast<T>(0);
+
+		M41 = static_cast<T>(0);
+		M42 = static_cast<T>(0);
+		M43 = static_cast<T>(0);
+		M44 = static_cast<T>(1);
 		}
 
 	FakeMatrix4x4(const FakeMatrix4x4 &other)
@@ -584,10 +628,10 @@ struct FakeMatrix4x4
 		const T b4 = m.M34 * m.M42 - m.M32 * m.M44;
 		const T b5 = m.M33 * m.M44 - m.M34 * m.M43;
 
-		const T d11 = m.M22 *  b5 + m.M23 *  b4 + m.M24 * b3;
-		const T d12 = m.M21 *  b5 + m.M23 *  b2 + m.M24 * b1;
-		const T d13 = m.M21 * -b4 + m.M22 *  b2 + m.M24 * b0;
-		const T d14 = m.M21 *  b3 + m.M22 * -b1 + m.M23 * b0;
+		const T d11 = m.M22 * b5 + m.M23 * b4 + m.M24 * b3;
+		const T d12 = m.M21 * b5 + m.M23 * b2 + m.M24 * b1;
+		const T d13 = m.M21 * -b4 + m.M22 * b2 + m.M24 * b0;
+		const T d14 = m.M21 * b3 + m.M22 * -b1 + m.M23 * b0;
 
 		T det = m.M11 * d11 - m.M12 * d12 + m.M13 * d13 - m.M14 * d14;
 		if (FAKE_ABS(det) <= static_cast<T>(1e-12)) // Matrix is singular
@@ -614,20 +658,20 @@ struct FakeMatrix4x4
 		const T a4 = m.M14 * m.M22 - m.M12 * m.M24;
 		const T a5 = m.M13 * m.M24 - m.M14 * m.M23;
 
-		const T d21 = m.M12 *  b5 + m.M13 *  b4 + m.M14 * b3;
-		const T d22 = m.M11 *  b5 + m.M13 *  b2 + m.M14 * b1;
-		const T d23 = m.M11 * -b4 + m.M12 *  b2 + m.M14 * b0;
-		const T d24 = m.M11 *  b3 + m.M12 * -b1 + m.M13 * b0;
+		const T d21 = m.M12 * b5 + m.M13 * b4 + m.M14 * b3;
+		const T d22 = m.M11 * b5 + m.M13 * b2 + m.M14 * b1;
+		const T d23 = m.M11 * -b4 + m.M12 * b2 + m.M14 * b0;
+		const T d24 = m.M11 * b3 + m.M12 * -b1 + m.M13 * b0;
 
-		const T d31 = m.M42 *  a5 + m.M43 *  a4 + m.M44 * a3;
-		const T d32 = m.M41 *  a5 + m.M43 *  a2 + m.M44 * a1;
-		const T d33 = m.M41 * -a4 + m.M42 *  a2 + m.M44 * a0;
-		const T d34 = m.M41 *  a3 + m.M42 * -a1 + m.M43 * a0;
+		const T d31 = m.M42 * a5 + m.M43 * a4 + m.M44 * a3;
+		const T d32 = m.M41 * a5 + m.M43 * a2 + m.M44 * a1;
+		const T d33 = m.M41 * -a4 + m.M42 * a2 + m.M44 * a0;
+		const T d34 = m.M41 * a3 + m.M42 * -a1 + m.M43 * a0;
 
-		const T d41 = m.M32 *  a5 + m.M33 *  a4 + m.M34 * a3;
-		const T d42 = m.M31 *  a5 + m.M33 *  a2 + m.M34 * a1;
-		const T d43 = m.M31 * -a4 + m.M32 *  a2 + m.M34 * a0;
-		const T d44 = m.M31 *  a3 + m.M32 * -a1 + m.M33 * a0;
+		const T d41 = m.M32 * a5 + m.M33 * a4 + m.M34 * a3;
+		const T d42 = m.M31 * a5 + m.M33 * a2 + m.M34 * a1;
+		const T d43 = m.M31 * -a4 + m.M32 * a2 + m.M34 * a0;
+		const T d44 = m.M31 * a3 + m.M32 * -a1 + m.M33 * a0;
 
 		result.M11 = +d11 * det;
 		result.M12 = -d21 * det;
@@ -647,10 +691,10 @@ struct FakeMatrix4x4
 		result.M44 = +d44 * det;
 		}
 
-	static FakeMatrix4x4 Inverse(const FakeMatrix4x4 &other)
+	static FakeMatrix4x4 Inverse(const FakeMatrix4x4 &value)
 		{
 		FakeMatrix4x4 result;
-		Inverse(*this, other, result);
+		Inverse(value, result);
 		return result;
 		}
 
@@ -665,12 +709,12 @@ struct FakeMatrix4x4
 		result.M22 = m.M22;
 		result.M23 = m.M32;
 		result.M24 = m.M42;
-		
+
 		result.M31 = m.M13;
 		result.M32 = m.M23;
 		result.M33 = m.M33;
 		result.M34 = m.M43;
-		
+
 		result.M41 = m.M14;
 		result.M42 = m.M24;
 		result.M43 = m.M34;
@@ -695,12 +739,12 @@ struct FakeMatrix4x4
 		result.M22 = -m.M22;
 		result.M23 = -m.M23;
 		result.M24 = -m.M24;
-		
+
 		result.M31 = -m.M31;
 		result.M32 = -m.M32;
 		result.M33 = -m.M33;
 		result.M34 = -m.M34;
-		
+
 		result.M41 = -m.M41;
 		result.M42 = -m.M42;
 		result.M43 = -m.M43;
@@ -725,12 +769,12 @@ struct FakeMatrix4x4
 		result.M22 = fake_lerp(start.M22, end.M22, amount);
 		result.M23 = fake_lerp(start.M23, end.M23, amount);
 		result.M24 = fake_lerp(start.M24, end.M24, amount);
-		
+
 		result.M31 = fake_lerp(start.M31, end.M31, amount);
 		result.M32 = fake_lerp(start.M32, end.M32, amount);
 		result.M33 = fake_lerp(start.M33, end.M33, amount);
 		result.M34 = fake_lerp(start.M34, end.M34, amount);
-		
+
 		result.M41 = fake_lerp(start.M41, end.M41, amount);
 		result.M42 = fake_lerp(start.M42, end.M42, amount);
 		result.M43 = fake_lerp(start.M43, end.M43, amount);
@@ -1391,12 +1435,12 @@ struct FakeMatrix4x4
 		result.M22 = a.M22 + b.M22;
 		result.M23 = a.M23 + b.M23;
 		result.M24 = a.M24 + b.M24;
-		
+
 		result.M31 = a.M31 + b.M31;
 		result.M32 = a.M32 + b.M32;
 		result.M33 = a.M33 + b.M33;
 		result.M34 = a.M34 + b.M34;
-		
+
 		result.M41 = a.M41 + b.M41;
 		result.M42 = a.M42 + b.M42;
 		result.M43 = a.M43 + b.M43;
@@ -1432,17 +1476,17 @@ struct FakeMatrix4x4
 		result.M12 = a.M11 * b.M12 + a.M12 * b.M22 + a.M13 * b.M32 + a.M14 * b.M42;
 		result.M13 = a.M11 * b.M13 + a.M12 * b.M23 + a.M13 * b.M33 + a.M14 * b.M43;
 		result.M14 = a.M11 * b.M14 + a.M12 * b.M24 + a.M13 * b.M34 + a.M14 * b.M44;
-		
+
 		result.M21 = a.M21 * b.M11 + a.M22 * b.M21 + a.M23 * b.M31 + a.M24 * b.M41;
 		result.M22 = a.M21 * b.M12 + a.M22 * b.M22 + a.M23 * b.M32 + a.M24 * b.M42;
 		result.M23 = a.M21 * b.M13 + a.M22 * b.M23 + a.M23 * b.M33 + a.M24 * b.M43;
 		result.M24 = a.M21 * b.M14 + a.M22 * b.M24 + a.M23 * b.M34 + a.M24 * b.M44;
-		
+
 		result.M31 = a.M31 * b.M11 + a.M32 * b.M21 + a.M33 * b.M31 + a.M34 * b.M41;
 		result.M32 = a.M31 * b.M12 + a.M32 * b.M22 + a.M33 * b.M32 + a.M34 * b.M42;
 		result.M33 = a.M31 * b.M13 + a.M32 * b.M23 + a.M33 * b.M33 + a.M34 * b.M43;
 		result.M34 = a.M31 * b.M14 + a.M32 * b.M24 + a.M33 * b.M34 + a.M34 * b.M44;
-		
+
 		result.M41 = a.M41 * b.M11 + a.M42 * b.M21 + a.M43 * b.M31 + a.M44 * b.M41;
 		result.M42 = a.M41 * b.M12 + a.M42 * b.M22 + a.M43 * b.M32 + a.M44 * b.M42;
 		result.M43 = a.M41 * b.M13 + a.M42 * b.M23 + a.M43 * b.M33 + a.M44 * b.M43;
@@ -1460,12 +1504,12 @@ struct FakeMatrix4x4
 		result.M22 = a.M22 * b;
 		result.M23 = a.M23 * b;
 		result.M24 = a.M24 * b;
-		
+
 		result.M31 = a.M31 * b;
 		result.M32 = a.M32 * b;
 		result.M33 = a.M33 * b;
 		result.M34 = a.M34 * b;
-		
+
 		result.M41 = a.M41 * b;
 		result.M42 = a.M42 * b;
 		result.M43 = a.M43 * b;
@@ -1474,9 +1518,9 @@ struct FakeMatrix4x4
 
 	static void Multiply(const FakeMatrix4x4 &a, const FakeVector4<T> &b, FakeVector4<T> &result)
 		{
-		result.X = a.Raw[ 0] * b.X + a.Raw[ 1] * b.Y + a.Raw[ 2] * b.Z + a.Raw[ 3] * b.W;
-		result.Y = a.Raw[ 4] * b.X + a.Raw[ 5] * b.Y + a.Raw[ 6] * b.Z + a.Raw[ 7] * b.W;
-		result.Z = a.Raw[ 8] * b.X + a.Raw[ 9] * b.Y + a.Raw[10] * b.Z + a.Raw[11] * b.W;
+		result.X = a.Raw[0] * b.X + a.Raw[1] * b.Y + a.Raw[2] * b.Z + a.Raw[3] * b.W;
+		result.Y = a.Raw[4] * b.X + a.Raw[5] * b.Y + a.Raw[6] * b.Z + a.Raw[7] * b.W;
+		result.Z = a.Raw[8] * b.X + a.Raw[9] * b.Y + a.Raw[10] * b.Z + a.Raw[11] * b.W;
 		result.W = a.Raw[12] * b.X + a.Raw[13] * b.Y + a.Raw[14] * b.Z + a.Raw[15] * b.W;
 		}
 
@@ -1512,17 +1556,17 @@ struct FakeMatrix4x4
 		result.M12 = a.M12 / b;
 		result.M13 = a.M13 / b;
 		result.M14 = a.M14 / b;
-		
+
 		result.M21 = a.M21 / b;
 		result.M22 = a.M22 / b;
 		result.M23 = a.M23 / b;
 		result.M24 = a.M24 / b;
-		
+
 		result.M31 = a.M31 / b;
 		result.M32 = a.M32 / b;
 		result.M33 = a.M33 / b;
 		result.M34 = a.M34 / b;
-		
+
 		result.M41 = a.M41 / b;
 		result.M42 = a.M42 / b;
 		result.M43 = a.M43 / b;
@@ -1606,21 +1650,21 @@ struct FakeMatrix4x4
 	bool operator<(const FakeMatrix4x4 &other) const
 		{
 		return M11 < other.M11
-			&& M12 < other.M12
-			&& M13 < other.M13
-			&& M14 < other.M14
-			&& M21 < other.M21
-			&& M22 < other.M22
-			&& M23 < other.M23
-			&& M24 < other.M24
-			&& M31 < other.M31
-			&& M32 < other.M32
-			&& M33 < other.M33
-			&& M34 < other.M34
-			&& M41 < other.M41
-			&& M42 < other.M42
-			&& M43 < other.M43
-			&& M44 < other.M44;
+			&&M12 < other.M12
+			&&M13 < other.M13
+			&&M14 < other.M14
+			&&M21 < other.M21
+			&&M22 < other.M22
+			&&M23 < other.M23
+			&&M24 < other.M24
+			&&M31 < other.M31
+			&&M32 < other.M32
+			&&M33 < other.M33
+			&&M34 < other.M34
+			&&M41 < other.M41
+			&&M42 < other.M42
+			&&M43 < other.M43
+			&&M44 < other.M44;
 		}
 
 	bool operator<=(const FakeMatrix4x4 &other) const
@@ -1828,7 +1872,7 @@ struct FakeMatrix4x4
 		M12 = other.M12;
 		M13 = other.M13;
 		M14 = other.M14;
-		
+
 		M21 = other.M21;
 		M22 = other.M22;
 		M23 = other.M23;

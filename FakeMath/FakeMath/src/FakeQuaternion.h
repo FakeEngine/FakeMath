@@ -1,10 +1,12 @@
-#ifndef FAKE_QUATERNION_H
-#define FAKE_QUATERNION_H
+#ifndef FAKE_QUATERNION_TEST_H
+#define FAKE_QUATERNION_TEST_H
 
 #include "FakeMathFunctions.h"
+
 #include "FakeVector2.h"
 #include "FakeVector3.h"
 #include "FakeVector4.h"
+
 #include "FakeMatrix2x2.h"
 #include "FakeMatrix3x3.h"
 #include "FakeMatrix4x4.h"
@@ -30,18 +32,15 @@ struct FakeQuaternion
 	static FakeQuaternion Identity;
 
 	FakeQuaternion()
-		{
-		}
+		{}
 
 	FakeQuaternion(T xyzw)
 		: X(xyzw), Y(xyzw), Z(xyzw), W(xyzw)
-		{
-		}
+		{}
 
 	FakeQuaternion(T x, T y, T z, T w)
 		: X(x), Y(y), Z(z), W(w)
-		{
-		}
+		{}
 
 	FakeQuaternion(const FakeVector3<T> &euler)
 		{
@@ -56,13 +55,11 @@ struct FakeQuaternion
 
 	FakeQuaternion(const FakeVector4<T> &v)
 		: X(v.X), Y(v.Y), Z(v.Z), W(v.W)
-		{
-		}
+		{}
 
 	FakeQuaternion(const FakeQuaternion &other)
 		: X(other.X), Y(other.Y), Z(other.Z), W(other.W)
-		{
-		}
+		{}
 
 	FakeString ToString() const
 		{
@@ -455,15 +452,15 @@ struct FakeQuaternion
 		FakeVector3<T> upNorm;
 		FakeVector3<T>::Cross(forwardNorm, rightNorm, upNorm);
 
-		#define m00 rightNorm.X
-		#define m01 rightNorm.Y
-		#define m02 rightNorm.Z
-		#define m10 upNorm.X
-		#define m11 upNorm.Y
-		#define m12 upNorm.Z
-		#define m20 forwardNorm.X
-		#define m21 forwardNorm.Y
-		#define m22 forwardNorm.Z
+	#define m00 rightNorm.X
+	#define m01 rightNorm.Y
+	#define m02 rightNorm.Z
+	#define m10 upNorm.X
+	#define m11 upNorm.Y
+	#define m12 upNorm.Z
+	#define m20 forwardNorm.X
+	#define m21 forwardNorm.Y
+	#define m22 forwardNorm.Z
 
 		const T sum = m00 + m11 + m22;
 		if (sum > 0)
@@ -503,15 +500,15 @@ struct FakeQuaternion
 			result.W = (m01 - m10) * invNumHalf;
 			}
 
-		#undef m00
-		#undef m01
-		#undef m02
-		#undef m10
-		#undef m11
-		#undef m12
-		#undef m20
-		#undef m21
-		#undef m22
+	#undef m00
+	#undef m01
+	#undef m02
+	#undef m10
+	#undef m11
+	#undef m12
+	#undef m20
+	#undef m21
+	#undef m22
 		}
 
 	static FakeQuaternion LookRotation(const FakeVector3<T> &forward, const FakeVector3<T> &up)
@@ -767,6 +764,11 @@ struct FakeQuaternion
 		result.W = a.W * b;
 		}
 
+	static void Multiply(const FakeQuaternion &a, const FakeVector3<T> &b, FakeVector3<T> &result)
+		{
+		FakeVector3<T>::Transform(b, a, result);
+		}
+
 	static FakeQuaternion Add(const FakeQuaternion &a, const FakeQuaternion &b)
 		{
 		FakeQuaternion result;
@@ -807,7 +809,7 @@ struct FakeQuaternion
 
 	bool operator<(const FakeQuaternion &other) const
 		{
-		return X < other.X && Y < other.Y && Z < other.Z && W < other.W;
+		return X < other.X &&Y < other.Y &&Z < other.Z &&W < other.W;
 		}
 
 	bool operator<=(const FakeQuaternion &other) const
@@ -858,6 +860,13 @@ struct FakeQuaternion
 		return result;
 		}
 
+	FakeVector3<T> operator*(const FakeVector3<T> &vector) const
+		{
+		FakeVector3<T> result;
+		Multiply(*this, vector, result);
+		return result;
+		}
+
 	FakeQuaternion &operator+=(const FakeQuaternion &other)
 		{
 		Add(*this, other, *this);
@@ -880,6 +889,13 @@ struct FakeQuaternion
 		{
 		Multiply(*this, scalar, *this);
 		return *this;
+		}
+
+	FakeVector3<T> operator*=(const FakeVector3<T> &vector)
+		{
+		FakeVector3<T> result;
+		Multiply(*this, vector, result);
+		return result;
 		}
 
 	FakeQuaternion &operator++(int)
@@ -971,6 +987,5 @@ typedef FakeQuaternion<int32> FakeQuati;
 typedef FakeQuaternion<long> FakeQuatl;
 typedef FakeQuaternion<short> FakeQuats;
 typedef FakeQuaternion<bool> FakeQuatb;
-
 
 #endif

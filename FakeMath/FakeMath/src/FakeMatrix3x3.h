@@ -1,5 +1,5 @@
-#ifndef FAKE_MATRIX_33_H
-#define FAKE_MATRIX_33_H
+#ifndef FAKE_MATRIX_3_H
+#define FAKE_MATRIX_3_H
 
 #include "FakeMathFunctions.h"
 #include "FakeVector2.h"
@@ -41,11 +41,11 @@ struct FakeMatrix3x3
 		M11 = static_cast<T>(0);
 		M12 = static_cast<T>(0);
 		M13 = static_cast<T>(0);
-		
+
 		M21 = static_cast<T>(0);
 		M22 = static_cast<T>(0);
 		M23 = static_cast<T>(0);
-		
+
 		M31 = static_cast<T>(0);
 		M32 = static_cast<T>(0);
 		M33 = static_cast<T>(0);
@@ -56,11 +56,11 @@ struct FakeMatrix3x3
 		M11 = value;
 		M12 = static_cast<T>(0);
 		M13 = static_cast<T>(0);
-		
+
 		M21 = static_cast<T>(0);
 		M22 = value;
 		M23 = static_cast<T>(0);
-		
+
 		M31 = static_cast<T>(0);
 		M32 = static_cast<T>(0);
 		M33 = value;
@@ -71,11 +71,11 @@ struct FakeMatrix3x3
 		M11 = m11;
 		M12 = m12;
 		M13 = m13;
-		
+
 		M21 = m21;
 		M22 = m22;
 		M23 = m23;
-		
+
 		M31 = m31;
 		M32 = m32;
 		M33 = m33;
@@ -86,11 +86,11 @@ struct FakeMatrix3x3
 		M11 = values[0];
 		M12 = values[1];
 		M13 = values[2];
-		
+
 		M21 = values[3];
 		M22 = values[4];
 		M23 = values[5];
-		
+
 		M31 = values[6];
 		M32 = values[7];
 		M33 = values[8];
@@ -101,11 +101,11 @@ struct FakeMatrix3x3
 		M11 = values[0][0];
 		M12 = values[1][0];
 		M13 = values[2][0];
-		
+
 		M21 = values[0][1];
 		M22 = values[1][1];
 		M23 = values[2][1];
-		
+
 		M31 = values[0][2];
 		M32 = values[1][2];
 		M33 = values[2][2];
@@ -116,7 +116,7 @@ struct FakeMatrix3x3
 		M11 = v1.X;
 		M12 = v1.Y;
 		M13 = v1.Z;
-		
+
 		M21 = v2.X;
 		M22 = v2.Y;
 		M23 = v2.Z;
@@ -131,11 +131,11 @@ struct FakeMatrix3x3
 		M11 = v1.X;
 		M12 = v1.Y;
 		M13 = v1.Z;
-		
+
 		M21 = v2.X;
 		M22 = v2.Y;
 		M23 = v2.Z;
-		
+
 		M31 = m31;
 		M32 = m32;
 		M33 = m33;
@@ -146,14 +146,29 @@ struct FakeMatrix3x3
 		M11 = v1.X;
 		M12 = v1.Y;
 		M13 = v1.Z;
-		
+
 		M21 = m21;
 		M22 = m22;
 		M23 = m23;
-		
+
 		M31 = m31;
 		M32 = m32;
 		M33 = m33;
+		}
+
+	FakeMatrix3x3(const FakeMatrix2x2<T> &other)
+		{
+		M11 = other.M11;
+		M12 = other.M12;
+		M13 = static_cast<T>(0);
+
+		M21 = other.M21;
+		M22 = other.M22;
+		M23 = static_cast<T>(0);
+
+		M31 = static_cast<T>(0);
+		M32 = static_cast<T>(0);
+		M33 = static_cast<T>(1);
 		}
 
 	FakeMatrix3x3(const FakeMatrix3x3 &other)
@@ -161,7 +176,7 @@ struct FakeMatrix3x3
 		M11 = other.M11;
 		M12 = other.M12;
 		M13 = other.M13;
-		
+
 		M21 = other.M21;
 		M22 = other.M22;
 		M23 = other.M23;
@@ -376,7 +391,7 @@ struct FakeMatrix3x3
 		result.M21 = -m.M21;
 		result.M22 = -m.M22;
 		result.M23 = -m.M23;
-		
+
 		result.M31 = -m.M31;
 		result.M32 = -m.M32;
 		result.M33 = -m.M33;
@@ -394,11 +409,11 @@ struct FakeMatrix3x3
 		result.M11 = static_cast<T>(1);
 		result.M12 = static_cast<T>(0);
 		result.M13 = static_cast<T>(0);
-		
+
 		result.M21 = static_cast<T>(0);
 		result.M22 = static_cast<T>(1);
 		result.M23 = static_cast<T>(0);
-		
+
 		result.M31 = translation.X;
 		result.M32 = translation.Y;
 		result.M33 = static_cast<T>(1);
@@ -478,7 +493,7 @@ struct FakeMatrix3x3
 		result.M21 = a.M21 + b.M21;
 		result.M22 = a.M22 + b.M22;
 		result.M23 = a.M23 + b.M23;
-		
+
 		result.M31 = a.M31 + b.M31;
 		result.M32 = a.M32 + b.M32;
 		result.M33 = a.M33 + b.M33;
@@ -508,7 +523,7 @@ struct FakeMatrix3x3
 		result.M21 = a.M21 * b.M11 + a.M22 * b.M21 + a.M23 * b.M31;
 		result.M22 = a.M21 * b.M12 + a.M22 * b.M22 + a.M23 * b.M32;
 		result.M23 = a.M21 * b.M13 + a.M22 * b.M23 + a.M23 * b.M33;
-		
+
 		result.M31 = a.M31 * b.M11 + a.M32 * b.M21 + a.M33 * b.M31;
 		result.M32 = a.M31 * b.M12 + a.M32 * b.M22 + a.M33 * b.M32;
 		result.M33 = a.M31 * b.M13 + a.M32 * b.M23 + a.M33 * b.M33;
@@ -632,14 +647,14 @@ struct FakeMatrix3x3
 	bool operator<(const FakeMatrix3x3 &other) const
 		{
 		return M11 < other.M11
-			&& M12 < other.M12
-			&& M13 < other.M13
-			&& M21 < other.M21
-			&& M22 < other.M22
-			&& M23 < other.M23
-			&& M31 < other.M31
-			&& M32 < other.M32
-			&& M33 < other.M33;
+			&&M12 < other.M12
+			&&M13 < other.M13
+			&&M21 < other.M21
+			&&M22 < other.M22
+			&&M23 < other.M23
+			&&M31 < other.M31
+			&&M32 < other.M32
+			&&M33 < other.M33;
 		}
 
 	bool operator<=(const FakeMatrix3x3 &other) const
