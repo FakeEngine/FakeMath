@@ -42,6 +42,9 @@ int perform_tests(TestFn funcs[], uint32 count);
 bool assert_equal(const FakeTimer &timer, float value1, float value2, bool forcePrint = true);
 bool assert_not_equal(const FakeTimer &timer, float value1, float value2, bool forcePrint = true);
 
+bool assert_equal(const FakeTimer &timer, double value1, double value2, bool forcePrint = true);
+bool assert_not_equal(const FakeTimer &timer, double value1, double value2, bool forcePrint = true);
+
 bool assert_equal(const FakeTimer &timer, const FakeVec2f &value1, const FakeVec2f &value2, bool forcePrint = true);
 bool assert_not_equal(const FakeTimer &timer, const FakeVec2f &value1, const FakeVec2f &value2, bool forcePrint = true);
 

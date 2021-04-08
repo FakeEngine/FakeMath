@@ -9,7 +9,6 @@ namespace FakeMathFunctionsTests
 	int test_mod_exp();
 	int test_mod_exp_2();
 	int test_mod_trunk();
-	int test_mod_fractional();
 
 	int test_trunk_to_int();
 	int test_floor_to_int();

@@ -22,7 +22,6 @@ int main(int argc, char *argv[])
 		FakeMathFunctionsTests::test_mod_exp,
 		FakeMathFunctionsTests::test_mod_exp_2,
 		FakeMathFunctionsTests::test_mod_trunk,
-		FakeMathFunctionsTests::test_mod_fractional,
 
 		FakeMathFunctionsTests::test_trunk_to_int,
 		FakeMathFunctionsTests::test_floor_to_int,

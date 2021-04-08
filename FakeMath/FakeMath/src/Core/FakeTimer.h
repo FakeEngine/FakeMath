@@ -26,6 +26,11 @@
 
 #include "FakeString.h"
 
+enum class FakePrecision
+	{
+	MICROSECONDS, MILLISECONDS
+	};
+
 class FakeTimer
 	{
 	private:
@@ -40,7 +45,7 @@ class FakeTimer
 		~FakeTimer();
 
 		void Start(const char *name = "default");
-		void Stop();
+		void Stop(FakePrecision precision = FakePrecision::MICROSECONDS);
 
 		const FakeString &GetName() const;
 		const FakeString &GetOutputString() const;
