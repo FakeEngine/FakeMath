@@ -84,7 +84,7 @@ struct FakeVector3
 
 	bool IsNormalized() const
 		{
-		return fake_is_one(X * X + Y * Y + Z * Z);
+		return fake_is_one(fake_round(X * X + Y * Y + Z * Z));
 		}
 
 	bool IsZero() const
@@ -498,6 +498,13 @@ struct FakeVector3
 		result.Z = value1.Z * part1 + value2.Z * part2 + tangent1.Z * part3 + tangent2.Z * part4;
 		}
 
+	static FakeVector3 Hermite(const FakeVector3 &value1, const FakeVector3 &value2, const FakeVector3 &tangent1, const FakeVector3 &tangent2, T amount)
+		{
+		FakeVector3 result;
+		Hermite(value1, value2, tangent1, tangent2, amount, result);
+		return result;
+		}
+
 	/// Returns the reflection of a vector off a surface that has the specified normal
 	static void Reflect(const FakeVector3 &vector, const FakeVector3 &normal, FakeVector3 &result)
 		{
@@ -505,6 +512,13 @@ struct FakeVector3
 		result.X = vector.X - static_cast<T>(2) * dot * normal.X;
 		result.Y = vector.Y - static_cast<T>(2) * dot * normal.Y;
 		result.Z = vector.Z - static_cast<T>(2) * dot * normal.Z;
+		}
+
+	static FakeVector3 Reflect(const FakeVector3 &vector, const FakeVector3 &normal)
+		{
+		FakeVector3 result;
+		Reflect(vector, normal, result);
+		return result;
 		}
 
 	/// Transforms a 3D vector by the given Quaternion rotation
@@ -559,6 +573,13 @@ struct FakeVector3
 			}
 		}
 
+	static FakeVector3 *Transform(const FakeVector3 *vectors, const FakeMatrix4x4<T> &transform, int32 vectorsCount)
+		{
+		FakeVector3 *result = new FakeVector3[vectorsCount];
+		Transform(vectors, transform, vectorsCount, result);
+		return result;
+		}
+
 	/// Performs a coordinate transformation using the given matrix
 	static void TransformCoordinate(const FakeVector3 &coordinate, const FakeMatrix4x4<T> &transform, FakeVector3 &result)
 		{
@@ -573,12 +594,26 @@ struct FakeVector3
 		result.Z = vector.Z * vector.W;
 		}
 
+	static FakeVector3 TransformCoordinate(const FakeVector3 &coordinate, const FakeMatrix4x4<T> &transform)
+		{
+		FakeVector3 result;
+		TransformCoordinate(coordinate, transform, result);
+		return result;
+		}
+
 	/// Performs a normal transformation using the given matrix
 	static void TransformNormal(const FakeVector3 &normal, const FakeMatrix4x4<T> &transform, FakeVector3 &result)
 		{
 		result.X = normal.X * transform.M11 + normal.Y * transform.M21 + normal.Z * transform.M31;
 		result.Y = normal.X * transform.M12 + normal.Y * transform.M22 + normal.Z * transform.M32;
 		result.Z = normal.X * transform.M13 + normal.Y * transform.M23 + normal.Z * transform.M33;
+		}
+
+	static FakeVector3 TransformNormal(const FakeVector3 &normal, const FakeMatrix4x4<T> &transform)
+		{
+		FakeVector3 result;
+		TransformNormal(normal, transform, result);
+		return result;
 		}
 
 	/// Projects a vector onto another vector.
@@ -619,7 +654,7 @@ struct FakeVector3
 	static void Unproject(const FakeVector3 &vector, T x, T y, T width, T height, T minZ, T maxZ, const FakeMatrix4x4<T> &worldViewProjection, FakeVector3 &result)
 		{
 		FakeMatrix4x4<T> matrix;
-		FakeMatrix4x4::Invert(worldViewProjection, matrix);
+		FakeMatrix4x4<T>::Inverse(worldViewProjection, matrix);
 
 		const FakeVector3 v = FakeVector3(
 				(vector.X - x) / width * static_cast<T>(2) - static_cast<T>(1),
@@ -660,9 +695,9 @@ struct FakeVector3
 		const T absZ = FAKE_ABS(Z);
 
 		if (absZ > absX && absZ > absY)
-			firstAxis = FakeVector3(1, 0, 0);
+			firstAxis = FakeVector3::UnitX;
 		else
-			firstAxis = FakeVector3(0, 0, 1);
+			firstAxis = FakeVector3::UnitZ;
 
 		firstAxis = (firstAxis - *this * (firstAxis | *this)).GetNormalized();
 		secondAxis = firstAxis ^ *this;
@@ -739,7 +774,7 @@ struct FakeVector3
 		return FakeVector3(-X, -Y, -Z);
 		}
 
-	T operator^(const FakeVector3 &other) const
+	FakeVector3 operator^(const FakeVector3 &other) const
 		{
 		return Cross(*this, other);
 		}

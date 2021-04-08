@@ -84,7 +84,7 @@ struct FakeVector4
 
 	bool IsNormalized() const
 		{
-		return fake_is_one(X * X + Y * Y + Z * Z + W * W);
+		return fake_is_one(fake_round(X * X + Y * Y + Z * Z + W * W));
 		}
 
 	bool IsZero() const
