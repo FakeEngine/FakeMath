@@ -1,4 +1,4 @@
-#include "AdditionTest.h"
+#include "Vector2AdditionTest.h"
 #include "../../src/Core/Test.h"
 
 namespace FakeVector2Tests

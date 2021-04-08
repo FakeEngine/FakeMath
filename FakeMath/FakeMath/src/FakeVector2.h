@@ -596,7 +596,7 @@ struct FakeVector2
 		{
 		static T wrongRet = static_cast<T>(-1);
 		if (index < 2)
-			return *((T *) this + index);
+			return *((T*)this + index);
 		else
 			return wrongRet;
 		}
@@ -605,7 +605,7 @@ struct FakeVector2
 		{
 		static T wrongRet = static_cast<T>(-1);
 		if (index < 2)
-			return *((T *) this + index);
+			return *((T*)this + index);
 		else
 			return wrongRet;
 		}

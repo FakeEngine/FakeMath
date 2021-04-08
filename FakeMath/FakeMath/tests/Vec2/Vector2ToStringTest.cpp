@@ -1,4 +1,4 @@
-#include "ToStringTest.h"
+#include "Vector2ToStringTest.h"
 #include "../../src/Core/Test.h"
 
 namespace FakeVector2Tests
@@ -32,6 +32,4 @@ namespace FakeVector2Tests
 
 		return 0;
 		}
-
-
 	}

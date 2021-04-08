@@ -1,4 +1,4 @@
-#include "LengthTest.h"
+#include "Vector2LengthTest.h"
 #include "../../src/Core/Test.h"
 
 namespace FakeVector2Tests
@@ -21,7 +21,7 @@ namespace FakeVector2Tests
 	int test_squared_length()
 		{
 		FakeVec2f v(12.0f, 21.4f);
-		float expectedLength = 601.96f; // 12 * 12 + 21,4 + 21,4 -> 601,96
+		float expectedLength = 601.96f; // 12 * 12 + 21,4 * 21,4 -> 601,96
 
 		FakeTimer timer("FakeVector2Tests::test_squared_length");
 		float result = v.LengthSquared();

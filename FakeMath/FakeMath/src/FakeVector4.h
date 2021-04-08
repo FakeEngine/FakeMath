@@ -635,12 +635,20 @@ struct FakeVector4
 
 	T &operator[](uint32 index)
 		{
-		return *((T *) this + index);
+		static T wrongRet = static_cast<T>(-1);
+		if (index < 4)
+			return *((T*)this + index);
+		else
+			return wrongRet;
 		}
 
 	const T &operator[](uint32 index) const
 		{
-		return *((T *) this + index);
+		static T wrongRet = static_cast<T>(-1);
+		if (index < 4)
+			return *((T*)this + index);
+		else
+			return wrongRet;
 		}
 
 	friend std::ostream &operator<<(std::ostream &stream, const FakeVector4 &v)

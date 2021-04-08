@@ -1,4 +1,4 @@
-#include "BinaryOperatorTest.h"
+#include "Vector2BinaryOperatorTest.h"
 #include "../../src/Core/Test.h"
 
 namespace FakeVector2Tests
